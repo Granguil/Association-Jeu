@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Association>
+	<AssociationL>
+		<Asso Niv="2" Type="1" Theme="Personnages joués par le même acteur" Question="Personnage 1"/>
+		<Liste>
+			<QR ID="1" Reponse="Han Solo" Question="Indiana Jones"/>
+			<QR ID="2" Reponse="Will Turner" Question="Legolas"/>
+			<QR ID="3" Reponse="Willy Wonka" Question="Jack Sparrow"/>
+			<QR ID="4" Reponse="Joy" Question="Katniss Everdeen"/>
+			<QR ID="5" Reponse="King Kong" Question="Gollum"/>
+			<QR ID="6" Reponse="Lucy" Question="Veuve Noire"/>
+			<QR ID="7" Reponse="Nina Sayers" Question="Padme Amidala"/>
+			<QR ID="8" Reponse="Elizabeth Bennet" Question="Elisabeth Swann"/>
+			<QR ID="9" Reponse="Frank Reagan" Question="Magnum"/>
+			<QR ID="10" Reponse="Doug Ross" Question="Danny Ocean"/>
+			<QR ID="11" Reponse="Marie-Antoinette" Question="Mary Jane Watson"/>
+			<QR ID="12" Reponse="Karen Settman" Question="Lisbeth Salander"/>
+			<QR ID="13" Reponse="Magneto" Question="Gandalf"/>
+			<QR ID="14" Reponse="Jack Bondurant" Question="Sam Witwicky"/>
+			<QR ID="15" Reponse="Ted Crawford" Question="Zorro"/>
+			<QR ID="16" Reponse="Frank Abagnale Jr" Question="Jack Dawson"/>
+			<QR ID="17" Reponse="Rose Dewitt" Question="Iris Simpkins"/>
+			<QR ID="18" Reponse="Vivian 'Viv' Ward" Question="Erin Brockovich"/>
+			<QR ID="19" Reponse="Angelica Teach" Question="Raimunda"/>
+			<QR ID="20" Reponse="Persephone" Question="Cleopâtre"/>
+		</Liste>
+		<Exemples>
+			<Exemple Ex="Allan Quatermain"/>
+			<Exemple Ex="James Bond"/>
+			<Exemple Ex="Obi-Wan Kenobi"/>
+			<Exemple Ex="James Bond"/>
+			<Exemple Ex="Quatermain et James Bond ont été incarné par Sean Connery alors que Obi-wan a été incarné par Alec Guiness et Ewan McGregor"/>
+		</Exemples>
+	</AssociationL>
+	<AssociationL>
+		<Asso Niv="1" Type="1" Theme="Objectifs des Jeux" Question="Objectif"/>
+		<Liste>
+			<QR ID="1" Reponse="Jeu de l'Oie" Question="Atteindre la case 63"/>
+			<QR ID="2" Reponse="Monopoly" Question="Avoir le plus d'argent"/>
+			<QR ID="3" Reponse="Petits Chevaux" Question="Atteindre la case centrale avec ses quatre pions"/>
+			<QR ID="4" Reponse="Jeu de Dames" Question="Eliminer les pions adverses"/>
+			<QR ID="5" Reponse="Echec" Question="Mettre mat le roi adverse"/>
+			<QR ID="6" Reponse="Blokus" Question="Poser toutes ses pièces sur le plateau"/>
+			<QR ID="7" Reponse="Affrontement des Sabres Lasers" Question="Remporter cinq duels"/>
+			<QR ID="8" Reponse="Risk : Seigneur des Anneaux" Question="Marquer le plus de points"/>
+			<QR ID="9" Reponse="Othello" Question="Avoir le plus de pions de sa couleur"/>
+			<QR ID="10" Reponse="Trivial Pursuit" Question="Remplir son camembert"/>
+			<QR ID="11" Reponse="1000 Bornes" Question="Parcourir mille kilomètres"/>
+			<QR ID="12" Reponse="Cluedo" Question="Trouver le coupable"/>
+			<QR ID="13" Reponse="Mistigri" Question="Ne pas avoir le valet de pique"/>
+			<QR ID="14" Reponse="Barbu" Question="Avoir le moins de points possibles"/>
+			<QR ID="15" Reponse="Backgammon" Question="Retirer tous ses pions du tablier"/>
+			<QR ID="16" Reponse="Solitaire" Question="Eliminer les 23 billes du plateau"/>
+			<QR ID="17" Reponse="Poker" Question="Gagner tous les jetons de la table"/>
+			<QR ID="18" Reponse="Bataille" Question="Avoir toutes les cartes du jeu en main"/>
+			<QR ID="19" Reponse="Mikado" Question="Enlever les baguettes sans faire bouger les autres"/>
+			<QR ID="20" Reponse="Abalone" Question="Faire sortir six billes adverses"/>
+		</Liste>
+		<Exemples>
+			<Exemple Ex="Avoir suffisament de points"/>
+			<Exemple Ex="Président"/>
+			<Exemple Ex="Tarot"/>
+			<Exemple Ex="Tarot"/>
+			<Exemple Ex="Il n'y a pas de points au président alors qu'au tarot l'objectif est d'avoir un nombre de points qui dépend de certaines cartes"/>
+		</Exemples>
+	</AssociationL>
+</Association>

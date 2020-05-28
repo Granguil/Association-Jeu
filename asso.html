@@ -5,7 +5,19 @@
         <meta charset="utf-8">
     </head>
     <body>
-
-
+        <div id="affichage"></div>
+        <script src="jquery-3.3.1.js"></script>
+        <script>
+            let liste;
+        </script>
+        <script src="listeAssociation.js"></script>
+        <script>    
+            /*$.get("http://localhost:8080/Projet/ListeAsso",function(data){
+                liste=data;
+            })*/
+            function affichage(){
+            $("#affichage").text(liste);
+            }
+        </script>
     </body>
 </html>
