@@ -3,9 +3,36 @@
     <head>
         <title>Association</title>
         <meta charset="utf-8">
+        <style>
+            .carre{
+                display:flex;
+                width: 200px;
+                height: 200px;
+                flex-direction: column;
+                justify-content: center;
+                border:solid;
+            }
+            .milieu{
+                display:inline-block;
+                vertical-align: middle;
+                width:196px;
+                text-align: center;
+                border:solid;
+                border-color: red;
+            }
+            .aff{
+                display: flex;
+                justify-content: center;
+            }
+            img{
+                width:180px;
+            }
+        </style>
     </head>
     <body>
-        <div id="affichage"></div>
+        <div id="affichage" class="aff"></div>
+        <div id="affichage2" class="aff"></div>
+        
         <script src="jquery-3.3.1.js"></script>
         <script>
             let liste;
@@ -16,8 +43,72 @@
                 liste=data;
             })*/
             function affichage(){
-            $("#affichage").text(liste);
+            
+            
+            let alea=Math.floor(Math.random()*liste.length);
+            //let asso=liste[alea];
+            let asso=liste[1];
+            let assoListe=new Array();
+            for(let i=0;i<asso.list.length;i++){
+                let duo=[asso.list[i].question,asso.list[i].reponse];
+                assoListe.push(duo);
             }
+            for(let i=0;i<20;i=i+2){
+                console.log(assoListe[i]);
+            }
+            console.log(asso.theme+" : de niveau "+asso.niveau+" et de type "+asso.type+" avec la question : "+asso.question);
+            let assoExemple=asso.exemple;
+            for(let i=0;i<assoExemple.length;i++){
+                console.log(assoExemple[i]);
+            }
+            let affichage=new Array(10);
+            for(let i=0;i<5;i++){
+                let rnd=Math.floor(Math.random()*assoListe.length);
+                let duo=assoListe[rnd];
+                assoListe.splice(rnd,1);
+                let bool1=false;
+                let bool2=false;
+                while(!bool1 || !bool2){
+                    let alea1=Math.floor(Math.random()*10);
+                    let alea2=Math.floor(Math.random()*10);
+                    if(affichage[alea1]==undefined && !bool1){
+                        affichage[alea1]=duo[0];
+                        bool1=true;
+                    }
+                    if(affichage[alea2]==undefined && !bool2){
+                        affichage[alea2]=duo[1];
+                        bool2=true;
+                    }
+                }
+
+            }
+            let aff=$("#affichage");
+            for(let i=0;i<10;i++){
+                let brique=$("<div></div>");
+                brique.attr("class","carre");
+                //brique.css("height","100px");
+                //brique.css("width","100px");
+                let text=$("<span></span>");
+                text.attr("class","milieu");
+                //brique.css("background-color","red");
+                let str=affichage[i].substring(0,3);
+                if(str=="img"){
+                    let img=$("<img>");
+                    img.attr("src",affichage[i]);
+                    text.append(img);
+                   
+                }else{
+                text.text(affichage[i]);
+                }
+                brique.append(text);
+                aff.append(brique);
+                
+                if(i==4){
+                    aff=$("#affichage2");
+                }
+            }
+            }
+
         </script>
     </body>
 </html>
