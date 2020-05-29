@@ -36,6 +36,10 @@
         <script src="jquery-3.3.1.js"></script>
         <script>
             let liste;
+            let numClick=0;
+            let premier;
+            let nbasso=0;
+            let type;
         </script>
         <script src="listeAssociation.js"></script>
         <script>    
@@ -48,6 +52,7 @@
             let alea=Math.floor(Math.random()*liste.length);
             //let asso=liste[alea];
             let asso=liste[1];
+            type=asso.type;
             let assoListe=new Array();
             for(let i=0;i<asso.list.length;i++){
                 let duo=[asso.list[i].question,asso.list[i].reponse];
@@ -62,9 +67,11 @@
                 console.log(assoExemple[i]);
             }
             let affichage=new Array(10);
+            let duoListe=new Array(5);
             for(let i=0;i<5;i++){
                 let rnd=Math.floor(Math.random()*assoListe.length);
                 let duo=assoListe[rnd];
+                duoListe[i]=duo;
                 assoListe.splice(rnd,1);
                 let bool1=false;
                 let bool2=false;
@@ -90,7 +97,7 @@
                 //brique.css("width","100px");
                 let text=$("<span></span>");
                 text.attr("class","milieu");
-                //brique.css("background-color","red");
+                brique.css("background-color","gray");
                 let str=affichage[i].substring(0,3);
                 if(str=="img"){
                     let img=$("<img>");
@@ -102,13 +109,62 @@
                 }
                 brique.append(text);
                 aff.append(brique);
-                
+                brique.on("click",function(){
+                    if(numClick!=2){
+                    text.css("display","inline-block");
+                    numClick++;
+                    if(numClick==2){
+                        let bool=false;
+                        if(premier.children("img").length>0 ){
+                            let imgp=premier.children("img").eq(0).attr("src");
+                            bool=verif(affichage[i],imgp,duoListe);
+                        }else{
+                            bool=verif(affichage[i],premier.text(),duoListe);
+                        }
+                        if(bool){
+                            alert("Bonne Association");
+                            setTimeout(function(){
+                            text.css("display","none");
+                            premier.css("display","none");
+                            text.parent().css("background-color","white");
+                            text.parent().css("border-color","white");
+                            text.parent().off();
+                            premier.parent().css("background-color","white");
+                            premier.parent().css("border-color","white");
+                            premier.parent().off();
+                            numClick=0;
+                            nbasso++;
+                            if(nbasso==5){
+                                alert("Victoire");
+                            }
+                            },5000);
+                        }else{
+                            setTimeout(function(){
+                                text.css("display","none");
+                                premier.css("display","none");
+                                numClick=0;
+                            },5000);
+                        }
+                    }else{
+                        premier=text;
+                    }
+                    }
+                });
+                text.css("display","none");
                 if(i==4){
                     aff=$("#affichage2");
                 }
             }
             }
-
+            function verif(deux,un,liste){
+                let bool=false;
+                for(let duo of liste){
+                    if((deux==duo[1] && un==duo[0]) || (deux==duo[0] && un==duo[1])){
+                        bool=true;
+                    }
+                }
+                return bool;
+            }
         </script>
     </body>
 </html>
