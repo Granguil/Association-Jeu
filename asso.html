@@ -32,6 +32,7 @@
     <body>
         <div id="affichage" class="aff"></div>
         <div id="affichage2" class="aff"></div>
+        <div id="affichage3" class="aff"></div>
         
         <script src="jquery-3.3.1.js"></script>
         <script>
@@ -40,18 +41,23 @@
             let premier;
             let nbasso=0;
             let type;
+            let nbduo=9;
+            let col=6;
+            let ligne=3;
         </script>
         <script src="listeAssociation.js"></script>
         <script>    
             /*$.get("http://localhost:8080/Projet/ListeAsso",function(data){
                 liste=data;
             })*/
-            function affichage(){
-            
+            function NvJeu(){
+            $("#affichage").empty();
+            $("#affichage2").empty();
+            $("#affichage3").empty();
             
             let alea=Math.floor(Math.random()*liste.length);
-            //let asso=liste[alea];
-            let asso=liste[1];
+            let asso=liste[alea];
+            //let asso=liste[1];
             type=asso.type;
             let assoListe=new Array();
             for(let i=0;i<asso.list.length;i++){
@@ -66,9 +72,9 @@
             for(let i=0;i<assoExemple.length;i++){
                 console.log(assoExemple[i]);
             }
-            let affichage=new Array(10);
-            let duoListe=new Array(5);
-            for(let i=0;i<5;i++){
+            let affichage=new Array(18);
+            let duoListe=new Array(9);
+            for(let i=0;i<9;i++){
                 let rnd=Math.floor(Math.random()*assoListe.length);
                 let duo=assoListe[rnd];
                 duoListe[i]=duo;
@@ -76,8 +82,8 @@
                 let bool1=false;
                 let bool2=false;
                 while(!bool1 || !bool2){
-                    let alea1=Math.floor(Math.random()*10);
-                    let alea2=Math.floor(Math.random()*10);
+                    let alea1=Math.floor(Math.random()*2*nbduo);
+                    let alea2=Math.floor(Math.random()*2*nbduo);
                     if(affichage[alea1]==undefined && !bool1){
                         affichage[alea1]=duo[0];
                         bool1=true;
@@ -90,11 +96,9 @@
 
             }
             let aff=$("#affichage");
-            for(let i=0;i<10;i++){
+            for(let i=0;i<2*nbduo;i++){
                 let brique=$("<div></div>");
                 brique.attr("class","carre");
-                //brique.css("height","100px");
-                //brique.css("width","100px");
                 let text=$("<span></span>");
                 text.attr("class","milieu");
                 brique.css("background-color","gray");
@@ -134,8 +138,12 @@
                             premier.parent().off();
                             numClick=0;
                             nbasso++;
-                            if(nbasso==5){
+                            if(nbasso==nbduo){
                                 alert("Victoire");
+                                let rejouer=confirm("Voulez-vous rejouer ?");
+                                if(rejouer){
+                                    NvJeu();
+                                }
                             }
                             },5000);
                         }else{
@@ -151,8 +159,11 @@
                     }
                 });
                 text.css("display","none");
-                if(i==4){
+                if(i==col-1){
                     aff=$("#affichage2");
+                }
+                if(i==2*col-1){
+                    aff=$("#affichage3");
                 }
             }
             }
