@@ -30,6 +30,9 @@
         </style>
     </head>
     <body>
+        <button id="theme">Afficher theme</button><button id="AB">Associer A et B</button><button id="ex">Afficher Exemple</button><br>
+        <span id="afftheme"></span><br>
+        <span id="exemple"></span><br>
         <div id="affichage" class="aff"></div>
         <div id="affichage2" class="aff"></div>
         <div id="affichage3" class="aff"></div>
@@ -44,6 +47,7 @@
             let nbduo=9;
             let col=6;
             let ligne=3;
+            let AB=0;
         </script>
         <script src="listeAssociation.js"></script>
         <script>    
@@ -51,10 +55,17 @@
                 liste=data;
             })*/
             function NvJeu(){
+            AB=0;
             $("#affichage").empty();
             $("#affichage2").empty();
             $("#affichage3").empty();
-            
+            $("#afftheme").css("display","none");
+            $("#exemple").css("display","none");
+            $("#theme").off();
+            $("#AB").off();
+            $("#ex").off();
+            $("#theme").css("display","inline");
+            $("#ex").css("display","inline");
             let alea=Math.floor(Math.random()*liste.length);
             let asso=liste[alea];
             //let asso=liste[1];
@@ -64,37 +75,67 @@
                 let duo=[asso.list[i].question,asso.list[i].reponse];
                 assoListe.push(duo);
             }
-            for(let i=0;i<20;i=i+2){
+            /*for(let i=0;i<20;i=i+2){
                 console.log(assoListe[i]);
             }
             console.log(asso.theme+" : de niveau "+asso.niveau+" et de type "+asso.type+" avec la question : "+asso.question);
             let assoExemple=asso.exemple;
             for(let i=0;i<assoExemple.length;i++){
                 console.log(assoExemple[i]);
-            }
-            let affichage=new Array(18);
-            let duoListe=new Array(9);
-            for(let i=0;i<9;i++){
+            }*/
+            let affichage=new Array(2*nbduo);
+            let affichageAB=new Array(2*nbduo);
+            let duoListe=new Array(nbduo);
+            let duoAB=new Array(nbduo);
+            for(let i=0;i<nbduo;i++){
                 let rnd=Math.floor(Math.random()*assoListe.length);
                 let duo=assoListe[rnd];
                 duoListe[i]=duo;
                 assoListe.splice(rnd,1);
                 let bool1=false;
                 let bool2=false;
+                duoAB[i]=new Array();
                 while(!bool1 || !bool2){
                     let alea1=Math.floor(Math.random()*2*nbduo);
                     let alea2=Math.floor(Math.random()*2*nbduo);
                     if(affichage[alea1]==undefined && !bool1){
                         affichage[alea1]=duo[0];
+                        affichageAB[alea1]="A : <br>"+duo[0];
+                        duoAB[i].push(affichageAB[alea1]);
                         bool1=true;
                     }
                     if(affichage[alea2]==undefined && !bool2){
                         affichage[alea2]=duo[1];
+                        affichageAB[alea2]="B : <br>"+duo[1];
+                        duoAB[i].push(affichageAB[alea2]);
                         bool2=true;
                     }
                 }
 
             }
+            if(type==1){
+                $("#AB").on("click",function(){
+                    $(".milieu").each(function(index){
+                        
+                        $(this).html(affichageAB[index]);
+                    })
+                    $("#AB").css("display","none");
+                    AB=1;
+                })
+                $("#AB").css("display","inline");
+            }else{
+                $("#AB").css("display","none");
+            }
+            $("#theme").on("click",function(){
+                $("#theme").css("display","none");
+                $("#afftheme").text("Theme : "+asso.theme);
+                $("#afftheme").css("display","inline");
+            })
+            $("#ex").on("click",function(){
+                $("#ex").css("display","none");
+                $("#exemple").text("Exemple d'association : "+asso.exemple[0]+" et "+asso.exemple[3]);
+                $("#exemple").css("display","inline");
+            })
             let aff=$("#affichage");
             for(let i=0;i<2*nbduo;i++){
                 let brique=$("<div></div>");
@@ -123,7 +164,15 @@
                             let imgp=premier.children("img").eq(0).attr("src");
                             bool=verif(affichage[i],imgp,duoListe);
                         }else{
+                            if(AB==0){
                             bool=verif(affichage[i],premier.text(),duoListe);
+                            }else{
+                                console.log(affichageAB[i]);
+                                console.log(premier.text());
+                                console.log(duoAB);
+                                let j=$(".milieu").index(premier);
+                                bool=verif(affichageAB[i],affichageAB[j],duoAB);
+                            }
                         }
                         if(bool){
                             alert("Bonne Association");
